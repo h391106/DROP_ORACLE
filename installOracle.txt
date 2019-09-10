@@ -1,0 +1,68 @@
+root$ yum search oracleasm
+ 
+root$ yum install kmod-oracleasm.x86_64
+ 
+root$ yum install oracleasm-support.x86_64
+
+root$ oracleasm configure -i
+ 
+root$ oracleasm status
+ 
+root$ oracleasm init
+ 
+root$ oracleasm createdisk data1 /dev/sdc1
+ 
+root$ oracleasm listdisks
+
+root$ groupadd dba
+ 
+root$ useradd -s /bin/bash -g dba -d /oragrid oragrid
+ 
+root$ passwd oragrid
+
+-- vi .bash_profile
+ 
+export ORACLE_BASE=/oragrid
+export ORACLE_HOME=$ORACLE_BASE/product/12.2.0.1
+export PATH=$PATH:$ORACLE_HOME/bin
+
+root$ yum install libaio-devel
+ 
+root$ yum install ksh
+ 
+root$ export CVUQDISK_GRP=dba
+ 
+root$ rpm -Uvh cvuqdisk-1.0.9.1.rpm
+
+
+
+
+root$ useradd -s /bin/bash -g dba -d /oracle oracle
+ 
+root$ passwd oracle
+
+export ORCLE_BASE=/oracle
+export ORACLE_HOME=$ORACLE_BASE/product/12.2.0.1
+export LD_LIBRARY-PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
+export PATH=$PATH:$HOME/bin:$ORACLE_HOME/bin
+export ORACLE_SID=TEST1
+
+
+
+
+
+oragrid$ $ORACLE_HOME/deinstall/deinstall
+
+root$ rm -rf /oragrid/Base
+ 
+root$ rm -rf /oragrid/product
+ 
+root$ rm -rf /oragrid/oraInventory
+ 
+root$ rm -f /etc/oraInst.loc
+ 
+root $ rm -f /etc/oratab
+ 
+root$ rm -rf /etc/oracle
+ 
+root$ rm -rf /var/tmp/.oracle
